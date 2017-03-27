@@ -28,14 +28,17 @@
 		$(function(){
 			var windowWidth = $(window).width();
 			var windowHeight = $(window).height();
-			
+			$(window).resize(function(){
+				windowWidth = $(window).width();
+				windowHeight = $(window).height();
+			})
 			setInterval(function(){
 				var startLfetPosition = windowWidth * Math.random();
 				var startOpacity = Math.random()*0.5+0.5;
 				var stopLfetPosition = windowWidth * Math.random();
 				var stopTopPOsition = windowHeight + 50;
 				var stopOpacity = 0;
-				var fallSpeed = 3000*Math.random()+2000;
+				var fallSpeed = 5000*Math.random()+2000;
 				snowObj.clone().appendTo("body").css({
 					"top":"-50px",
 					"font-size":maxSize*Math.random()+minSize,
