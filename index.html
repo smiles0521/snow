@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>雪花飘飘</title>
+		<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				width: 100%;
+				height: 100%;
+				background-color: #333;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="snow"></div>
+	</body>
+	<script type="text/javascript">
+		var minSize = 5;
+		var maxSize = 50;
+		var speed = 500;
+		var snowObj = $("<div></div>").css({"position":"absolute","top":"-50px","color":"#fff"}).html("❄");
+		$(function(){
+			var windowWidth = $(window).width();
+			var windowHeight = $(window).height();
+			
+			setInterval(function(){
+				var startLfetPosition = windowWidth * Math.random();
+				var startOpacity = Math.random()*0.5+0.5;
+				var stopLfetPosition = windowWidth * Math.random();
+				var stopTopPOsition = windowHeight + 50;
+				var stopOpacity = 0;
+				var fallSpeed = 3000*Math.random()+2000;
+				snowObj.clone().appendTo("body").css({
+					"top":"-50px",
+					"font-size":maxSize*Math.random()+minSize,
+					"left":startLfetPosition,
+					"opacity":startOpacity,
+				}).animate({
+					left:stopLfetPosition,
+					top:stopTopPOsition,
+					opacity:stopOpacity,
+				},fallSpeed,function(){
+					$(this).remove();
+					console.log(windowHeight-stopTopPOsition);
+				})
+			},speed)
+		})
+	</script>
+</html>
